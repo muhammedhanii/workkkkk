@@ -97,8 +97,8 @@ class ReportGenerator:
         # Part table header
         table_y = y_start
         draw.text((x_offset, table_y), "Part Name", fill='black', font=normal_font)
-        draw.text((x_offset + 150, table_y), "Length", fill='black', font=normal_font)
-        draw.text((x_offset + 250, table_y), "Width", fill='black', font=normal_font)
+        draw.text((x_offset + 150, table_y), "Length (cm)", fill='black', font=normal_font)
+        draw.text((x_offset + 250, table_y), "Width (cm)", fill='black', font=normal_font)
         draw.text((x_offset + 350, table_y), "Count", fill='black', font=normal_font)
         table_y += 25
         
@@ -121,8 +121,11 @@ class ReportGenerator:
         
         for piece_data in piece_counts.values():
             draw.text((x_offset, table_y), piece_data['name'], fill='black', font=normal_font)
-            draw.text((x_offset + 150, table_y), str(piece_data['length']), fill='black', font=normal_font)
-            draw.text((x_offset + 250, table_y), str(piece_data['width']), fill='black', font=normal_font)
+            # Convert mm to cm for display
+            length_cm = piece_data['length'] / 10
+            width_cm = piece_data['width'] / 10
+            draw.text((x_offset + 150, table_y), f"{length_cm:.1f} cm", fill='black', font=normal_font)
+            draw.text((x_offset + 250, table_y), f"{width_cm:.1f} cm", fill='black', font=normal_font)
             draw.text((x_offset + 350, table_y), str(piece_data['count']), fill='black', font=normal_font)
             table_y += 20
         
@@ -154,8 +157,10 @@ class ReportGenerator:
                 width=1
             )
             
-            # Draw piece label
-            label = f"{piece.name}\n{piece.length} x {piece.width}"
+            # Draw piece label (convert mm to cm for display)
+            length_cm = piece.length / 10
+            width_cm = piece.width / 10
+            label = f"{piece.name}\n{length_cm:.1f} x {width_cm:.1f} cm"
             bbox = draw.textbbox((0, 0), label, font=small_font)
             label_width = bbox[2] - bbox[0]
             label_height = bbox[3] - bbox[1]
