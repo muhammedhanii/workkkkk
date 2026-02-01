@@ -124,8 +124,8 @@ class ReportGenerator:
             # Convert mm to cm for display
             length_cm = piece_data['length'] / 10
             width_cm = piece_data['width'] / 10
-            draw.text((x_offset + 150, table_y), f"{length_cm:.1f} cm", fill='black', font=normal_font)
-            draw.text((x_offset + 250, table_y), f"{width_cm:.1f} cm", fill='black', font=normal_font)
+            draw.text((x_offset + 150, table_y), f"{length_cm:.1f}", fill='black', font=normal_font)
+            draw.text((x_offset + 250, table_y), f"{width_cm:.1f}", fill='black', font=normal_font)
             draw.text((x_offset + 350, table_y), str(piece_data['count']), fill='black', font=normal_font)
             table_y += 20
         
