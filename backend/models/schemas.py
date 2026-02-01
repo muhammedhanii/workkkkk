@@ -5,8 +5,8 @@ from pydantic import BaseModel
 class Piece(BaseModel):
     """Represents a single piece to be cut"""
     name: str
-    length: int  # cm
-    width: int   # cm
+    length: float  # cm (supports decimals)
+    width: float   # cm (supports decimals)
     quantity: int
     length_constraint: bool = False  # شرط طول
     width_constraint: bool = False   # شرط عرض
@@ -15,21 +15,21 @@ class Piece(BaseModel):
 class PlacedPiece(BaseModel):
     """Represents a piece placed on a board"""
     name: str
-    length: int
-    width: int
-    x: int  # position
-    y: int  # position
+    length: float
+    width: float
+    x: float  # position
+    y: float  # position
     rotated: bool = False
 
 
 class Board(BaseModel):
     """Represents a single board with placed pieces"""
     board_number: int
-    length: int = 2400  # mm (240 cm)
-    width: int = 1200   # mm (120 cm)
+    length: float = 2400  # mm (240 cm)
+    width: float = 1200   # mm (120 cm)
     pieces: List[PlacedPiece]
     utilization: float
-    waste_area: int
+    waste_area: float
 
 
 class CuttingResult(BaseModel):

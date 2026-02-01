@@ -44,8 +44,8 @@ class ExcelParser:
             for _, row in df.iterrows():
                 pieces.append(Piece(
                     name=str(row['name']),
-                    length=int(row['length']),
-                    width=int(row['width']),
+                    length=float(row['length']),
+                    width=float(row['width']),
                     quantity=int(row['quantity']),
                     length_constraint=bool(row.get('length_constraint', False)),
                     width_constraint=bool(row.get('width_constraint', False))
